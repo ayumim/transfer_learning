@@ -1,3 +1,5 @@
 *.aux
 *.log
 *.out
+*.Rhistroy
+*.Rproj.user/
