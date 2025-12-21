@@ -7,7 +7,7 @@ sigma2 <- 1
 # theta_s <- sample(c(runif(p, -6, -3),runif(p, 3, 6)), p)
 theta_s <- ifelse(runif(p)<0.5, runif(p, -6, -3), runif(p, 3, 6))
 
-kappa2 <- 10
+kappa2 <- 0.1
 theta_t <- rnorm(p, mean = theta_s, sd = sqrt(kappa2))
 
 x_t <- rmvnorm(n_t, rep(0, p), diag(1, p))
@@ -58,4 +58,6 @@ gibbs <- function(y, x, f_i, N=10000, tau2=1, a_gamma=2, b_gamma=2,
     rate_s <- sum((y - (alpha[i,] + f_i))^2) / 2 + b_sigma
     sigma[i] <- rinvgamma(1, shape = shape_s, rate=rate_s)
   }
+  
+  return(list(alpha=alpha, delta=delta, gamma=gamma, sigma=sigma))
 }
