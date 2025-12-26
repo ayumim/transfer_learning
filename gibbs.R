@@ -74,6 +74,6 @@ gamma_update <- function(eta, delta, a, b, n) {
 # sigma update 
 sigma_update <- function(y, eta, f_i, a, b, n) {
   shape <- a + n / 2
-  rate <- sum((y - eta - f_i)^2) / 2 + b
+  rate <- sum((y - (eta + f_i))^2) / 2 + b
   return(rinvgamma(1, shape = shape, rate=rate))
 }
