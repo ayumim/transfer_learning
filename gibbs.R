@@ -77,3 +77,11 @@ sigma_update <- function(y, eta, f_i, a, b, n) {
   rate <- sum((y - (eta + f_i))^2) / 2 + b
   return(rinvgamma(1, shape = shape, rate=rate))
 }
+
+burnin <- function(out, burn=2000) {
+  out$eta <- out$eta[-c(1:burn), ]
+  out$delta <- out$delta[-c(1:burn)]
+  out$gamma <- out$gamma[-c(1:burn)]
+  out$sigma <- out$sigma[-c(1:burn)]
+  return(out)
+}
