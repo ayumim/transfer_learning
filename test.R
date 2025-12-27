@@ -18,6 +18,7 @@ for(i in 1:length(kappa2)) {
   theta_t <- rnorm(p, mean = theta_s, sd = sqrt(kappa2[i]))
   y <- rnorm(n_t, mean=x_t %*%theta_t, sd=sqrt(sigma2))
   results[[i]] <- gibbs(y, x_t, f_i)
+  # results[[i]] <- burnin(results[[i]])
   plot(results[[i]]$delta, type="l")
   plot(results[[i]]$gamma, type="l")
   plot(results[[i]]$sigma, type="l")
